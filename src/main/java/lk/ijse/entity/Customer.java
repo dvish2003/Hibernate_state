@@ -1,8 +1,6 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -10,18 +8,19 @@ import java.util.List;
 public class Customer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "customer")
-    private List<Address> address;
+    private String address;
 
-    public Customer(int id, String name, List<Address> address) {
+    public Customer(int id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
-
     }
-    public Customer() {}
+
+    public Customer() {
+    }
 
     public int getId() {
         return id;
@@ -39,11 +38,11 @@ public class Customer {
         this.name = name;
     }
 
-    public List<Address> getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(List<Address> address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 }
